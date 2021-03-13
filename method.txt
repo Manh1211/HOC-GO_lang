@@ -1,0 +1,55 @@
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+type student struct {
+	name   string
+	class  string
+	age    int
+	socore float64
+}
+
+func newstruc(Name string, Class string, Age int, Socore float64) (*student, error) {
+	if Name == "" && Class == "" {
+		return nil, fmt.Errorf("can't be empty string")
+	}
+	if Age == 0 {
+		return nil, fmt.Errorf("age must be >= 0")
+	}
+	if Socore == 0.0 {
+		return nil, fmt.Errorf("socore must be >= 0")
+	}
+
+	student2 := &student{
+		name:   Name,
+		class:  Class,
+		age:    Age,
+		socore: Socore,
+	}
+	return student2, nil
+}
+
+func main() {
+	student1 := student{
+		name:   "kimmanh",
+		class:  "cntt1",
+		age:    18,
+		socore: 3.2,
+	}
+	student2, err := newstruc("Hoang", "cntt", 18, 4)
+
+	if err != nil {
+		fmt.Printf("error: can't create new student - %s\n", err)
+		os.Exit(2)
+	}
+
+	student1 = *student2
+
+	fmt.Printf("%v \n", student1)
+
+	fmt.Println(*student2)
+
+}
