@@ -17,11 +17,21 @@ type Square struct {
 	Length int
 }
 
-//Move moves the point
-func (p *Point) Move(dx int, dy int) {
+//Moved moves the point
+func (p *Point) Moved(dx int, dy int) {
 	p.X += dx
 	p.Y += dy
 
+}
+
+//Area return the square are
+func (s *Square) Area() int {
+	return s.Length * s.Length
+}
+
+//S.method have prototype P.method
+func (s *Square) Move(dx int, dy int) {
+	s.Center.Moved(dx, dy) // s --> centrer --> Move
 }
 
 //NewSuqare return a new square
@@ -36,16 +46,6 @@ func NewSuqare(x int, y int, length int) (*Square, error) {
 	}
 
 	return s, nil
-}
-
-//Move moves the sqare		S.method have prototype 
-func (s *Square) Move(dx int, dy int) {
-	s.Center.Move(dx, dy)
-}
-
-//Area return the square are	
-func (s *Square) Area() int {
-	return s.Length * s.Length
 }
 
 func main() {
